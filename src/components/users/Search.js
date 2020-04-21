@@ -9,12 +9,21 @@ class Search extends Component {
   };
 
   onSubmit = (e) => {
-
-  }
+    e.preventDefault();
+    if (this.state.text == "") {
+      // trigger alert
+      this.props.triggerAlert("Enter Search Term", "light");
+    } else {
+      // add text to props
+      this.props.searchUser(this.state.text);
+      // reset form
+      this.setState({ text: "" });
+    }
+  };
   render() {
     return (
       <div>
-        <form onSubmit = {this.onSubmit} className="form">
+        <form onSubmit={this.onSubmit} className="form">
           <input
             type="text"
             name="text"
@@ -28,6 +37,14 @@ class Search extends Component {
             value="Search"
           />
         </form>
+        {this.props.showClearBtn ? (
+          <button
+            className="btn btn-clear btn-block"
+            onClick={this.props.clearUsers}
+          >
+            Clear
+          </button>
+        ) : null}
       </div>
     );
   }

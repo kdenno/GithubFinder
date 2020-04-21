@@ -17,7 +17,7 @@ const Users = (props) =>  {
  
     return (
      
-        <div style={userStyle}>
+        <div className="container" style={userStyle}>
 
          {
            UserData

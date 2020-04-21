@@ -10,7 +10,7 @@ class Search extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if (this.state.text == "") {
+    if (this.state.text ==="") {
       // trigger alert
       this.props.triggerAlert("Enter Search Term", "light");
     } else {
@@ -22,7 +22,7 @@ class Search extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="container">
         <form onSubmit={this.onSubmit} className="form">
           <input
             type="text"

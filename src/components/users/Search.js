@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import GithubContext from "../../context/github/githuContext";
 
-const Search = ({triggerAlert, searchUser, showClearBtn, clearUsers}) => {
+const Search = ({triggerAlert, showClearBtn, clearUsers}) => {
+  const githubContext = useContext(GithubContext);
     const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -14,7 +16,7 @@ const Search = ({triggerAlert, searchUser, showClearBtn, clearUsers}) => {
     triggerAlert("Enter Search Term", "light");
     } else {
       // add text to props
-      searchUser(text);
+      githubContext.searchUser(text);
       // reset form
       setText('');
     }

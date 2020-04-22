@@ -12,7 +12,7 @@ import {
   SET_LOADING,
 } from "../ActionTypes";
 
-const GithuState = (props) => {
+const GithubState = (props) => {
   const initialState = {
     users: [],
     user: {},
@@ -25,6 +25,15 @@ const GithuState = (props) => {
 
   // Search users
 
+  const searchUser = async (text) => {
+    setLoading();
+    const res = await axios.get(
+      `https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+    );
+    dispatch({type:SEARCH_USERS, payload: res.data.items});
+ 
+  };
+
   // Get user
 
   // Get Repos
@@ -32,6 +41,7 @@ const GithuState = (props) => {
   // Clear Users
 
   // Set Loading
+  const setLoading = () => dispatch({type: SET_LOADING})
 
   // return provider to our app with anything we want to be available to our app as props
   return (
@@ -41,6 +51,7 @@ const GithuState = (props) => {
         loading: state.loading,
         user: state.user,
         repos: state.repos,
+        searchUser,
       }}
     >
       {props.children}
@@ -48,4 +59,4 @@ const GithuState = (props) => {
   );
 };
 
-export default GithuState;
+export default GithubState;

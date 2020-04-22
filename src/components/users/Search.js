@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githuContext";
 
-const Search = ({triggerAlert, showClearBtn, clearUsers}) => {
+const Search = ({triggerAlert}) => {
   const githubContext = useContext(GithubContext);
+  const {clearUsers, searchUser, users} = githubContext;
     const [text, setText] = useState('');
 
   const onChange = (e) => {
@@ -15,8 +16,7 @@ const Search = ({triggerAlert, showClearBtn, clearUsers}) => {
       // trigger alert
     triggerAlert("Enter Search Term", "light");
     } else {
-      // add text to props
-      githubContext.searchUser(text);
+      searchUser(text);
       // reset form
       setText('');
     }
@@ -38,7 +38,7 @@ const Search = ({triggerAlert, showClearBtn, clearUsers}) => {
             value="Search"
           />
         </form>
-        {showClearBtn ? (
+        {users.length > 0 ? (
           <button
             className="btn btn-clear btn-block"
             onClick={clearUsers}

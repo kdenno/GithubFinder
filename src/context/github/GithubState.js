@@ -6,9 +6,7 @@ import {
   SEARCH_USERS,
   GET_REPOS,
   GET_USER,
-  REMOVE_ALERT,
   CLEAR_USERS,
-  TRIGGER_ALERT,
   SET_LOADING,
 } from "../ActionTypes";
 

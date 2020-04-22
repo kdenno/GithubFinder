@@ -1,8 +1,11 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githuContext";
+import AlertContext from "../../context/alert/alertContenxt";
 
-const Search = ({triggerAlert}) => {
+const Search = () => {
   const githubContext = useContext(GithubContext);
+  const alertContext  = useContext(AlertContext);
+
   const {clearUsers, searchUser, users} = githubContext;
     const [text, setText] = useState('');
 
@@ -14,7 +17,7 @@ const Search = ({triggerAlert}) => {
     e.preventDefault();
     if (text ==="") {
       // trigger alert
-    triggerAlert("Enter Search Term", "light");
+    alertContext.raiseAlert("Enter Search Term", "light");
     } else {
       searchUser(text);
       // reset form

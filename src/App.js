@@ -8,6 +8,7 @@ import Alert from "./components/layout/Alert";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./components/pages/About";
 import User from "./components/pages/User";
+import GithubState from "./context/github/GithubState";
 
 const App = (props) => {
   const [users, setUsers] = useState([]);
@@ -55,6 +56,7 @@ const App = (props) => {
   };
 
   return (
+    <GithubState>
     <Router>
       <div className="App">
         <Navbar />
@@ -94,6 +96,7 @@ const App = (props) => {
         </Switch>
       </div>
     </Router>
+    </GithubState>
   );
 };
 
